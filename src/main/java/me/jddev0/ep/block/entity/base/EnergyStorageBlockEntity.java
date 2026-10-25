@@ -8,7 +8,6 @@ import me.jddev0.ep.networking.packet.EnergySyncS2CPacket;
 import me.jddev0.ep.util.CapabilityUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -66,18 +65,12 @@ public abstract class EnergyStorageBlockEntity<E extends IEnergizedPowerEnergySt
                 getBlockPos()), (ServerPlayer)player);
     }
 
-    protected final void syncEnergyToPlayers(int distance) {
-        if(level != null && !level.isClientSide())
-            ModMessages.sendToPlayersWithinXBlocks(
-                    new EnergySyncS2CPacket(energyStorage.getAmountAsInt(), energyStorage.getCapacityAsInt(), getBlockPos()),
-                    getBlockPos(), (ServerLevel)level, distance
-            );
-    }
-
+    @Override
     public int getEnergy() {
         return energyStorage.getAmountAsInt();
     }
 
+    @Override
     public int getCapacity() {
         return energyStorage.getCapacityAsInt();
     }

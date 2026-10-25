@@ -128,7 +128,6 @@ public abstract class AbstractFluidPumpBlockEntity
             @Override
             protected void onFinalCommit() {
                 setChanged();
-                syncFluidToPlayers(32);
             }
         };
     }

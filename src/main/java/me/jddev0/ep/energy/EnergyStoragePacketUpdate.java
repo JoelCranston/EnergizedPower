@@ -4,6 +4,9 @@ package me.jddev0.ep.energy;
  * Used for EnergySyncS2CPacket
  */
 public interface EnergyStoragePacketUpdate {
+    int getEnergy();
+    int getCapacity();
+
     void setEnergy(int energy);
     void setCapacity(int capacity);
 }

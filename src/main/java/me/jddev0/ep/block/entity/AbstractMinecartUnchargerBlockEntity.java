@@ -52,7 +52,6 @@ public abstract class AbstractMinecartUnchargerBlockEntity extends MenuEnergySto
             @Override
             protected void onFinalCommit() {
                 setChanged();
-                syncEnergyToPlayers(32);
             }
         };
     }

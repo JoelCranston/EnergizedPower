@@ -62,7 +62,6 @@ public class TransformerBlockEntity extends ConfigurableEnergyStorageBlockEntity
             @Override
             protected void onFinalCommit() {
                 setChanged();
-                syncEnergyToPlayers(32);
             }
 
             @Override

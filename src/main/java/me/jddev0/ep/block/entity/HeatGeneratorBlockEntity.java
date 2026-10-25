@@ -58,7 +58,6 @@ public class HeatGeneratorBlockEntity extends UpgradableEnergyStorageBlockEntity
             @Override
             protected void onFinalCommit() {
                 setChanged();
-                syncEnergyToPlayers(32);
             }
         };
     }

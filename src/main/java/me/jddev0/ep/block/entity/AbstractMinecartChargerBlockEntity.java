@@ -52,7 +52,6 @@ public abstract class AbstractMinecartChargerBlockEntity extends MenuEnergyStora
             @Override
             protected void onFinalCommit() {
                 setChanged();
-                syncEnergyToPlayers(32);
             }
         };
     }

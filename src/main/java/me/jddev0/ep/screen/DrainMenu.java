@@ -3,6 +3,7 @@ package me.jddev0.ep.screen;
 import me.jddev0.ep.block.EPBlocks;
 import me.jddev0.ep.block.entity.DrainBlockEntity;
 import me.jddev0.ep.inventory.data.SimpleProgressValueContainerData;
+import me.jddev0.ep.networking.MenuStorageSyncTracker;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -11,10 +12,14 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.fluids.FluidStack;
+import org.jetbrains.annotations.Nullable;
 
 public class DrainMenu extends AbstractContainerMenu {
     private final DrainBlockEntity blockEntity;
     private final Level level;
+
+    @Nullable
+    private final MenuStorageSyncTracker storageSyncTracker;
 
     private final SimpleProgressValueContainerData progressData = new SimpleProgressValueContainerData();
     private final SimpleProgressValueContainerData maxProgressData = new SimpleProgressValueContainerData();
@@ -28,6 +33,8 @@ public class DrainMenu extends AbstractContainerMenu {
 
         this.blockEntity = (DrainBlockEntity)blockEntity;
         this.level = inv.player.level();
+
+        storageSyncTracker = MenuStorageSyncTracker.create(this.blockEntity, inv.player);
 
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
@@ -55,6 +62,14 @@ public class DrainMenu extends AbstractContainerMenu {
     @Override
     public ItemStack quickMoveStack(Player player, int index) {
         return ItemStack.EMPTY;
+    }
+
+    @Override
+    public void broadcastChanges() {
+        super.broadcastChanges();
+
+        if(storageSyncTracker != null)
+            storageSyncTracker.sync();
     }
 
     @Override

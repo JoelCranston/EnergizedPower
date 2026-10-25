@@ -74,7 +74,6 @@ public abstract class WorkerFluidMachineBlockEntity<W>
             @Override
             protected void onFinalCommit() {
                 setChanged();
-                syncEnergyToPlayers(32);
             }
         };
     }

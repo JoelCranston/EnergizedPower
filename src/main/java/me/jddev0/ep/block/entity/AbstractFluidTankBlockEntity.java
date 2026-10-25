@@ -14,6 +14,8 @@ import org.jetbrains.annotations.Nullable;
 
 public abstract class AbstractFluidTankBlockEntity<F extends IEnergizedPowerFluidStorage>
         extends MenuFluidStorageBlockEntity<F> {
+    private boolean fluidSyncPending;
+
     public AbstractFluidTankBlockEntity(BlockEntityType<?> type, BlockPos blockPos, BlockState blockState,
                                         String machineName,
                                         int baseTankCapacity) {
@@ -25,9 +27,19 @@ public abstract class AbstractFluidTankBlockEntity<F extends IEnergizedPowerFlui
         if(level.isClientSide())
             return;
 
-        //Sync item stacks to client every 5 seconds
-        if(level.getGameTime() % 100 == 0) //TODO improve
+        //Sync fluid to client at most once per tick if it changed and every 5 seconds (Offset by position to spread the load across ticks)
+        if(blockEntity.fluidSyncPending || (level.getGameTime() + Math.floorMod(blockPos.asLong(), 100)) % 100 == 0) {
+            blockEntity.fluidSyncPending = false;
+
             blockEntity.syncFluidToPlayers(64);
+        }
+    }
+
+    /**
+     * The fluid will be synced to players nearby in the next tick (The renderer requires the fluid on the client)
+     */
+    protected final void markFluidSyncPending() {
+        fluidSyncPending = true;
     }
 
     public int getRedstoneOutput() {

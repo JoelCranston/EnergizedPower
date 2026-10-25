@@ -65,7 +65,6 @@ public class ChargingStationBlockEntity extends UpgradableEnergyStorageBlockEnti
             @Override
             protected void onFinalCommit() {
                 setChanged();
-                syncEnergyToPlayers(32);
             }
         };
     }

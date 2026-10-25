@@ -61,6 +61,11 @@ public abstract class FluidStorageBlockEntity<F extends IEnergizedPowerFluidStor
                 );
     }
 
+    @Override
+    public int getTankCount() {
+        return fluidStorage.size();
+    }
+
     public FluidStack getFluid(int tank) {
         return fluidStorage.getFluid(tank);
     }

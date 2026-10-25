@@ -29,7 +29,7 @@ public class CreativeFluidTankBlockEntity
             @Override
             protected void onFinalCommit() {
                 setChanged();
-                syncFluidToPlayers(64);
+                markFluidSyncPending();
             }
         };
     }

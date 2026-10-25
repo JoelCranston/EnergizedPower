@@ -51,7 +51,6 @@ public class DrainBlockEntity extends MenuFluidStorageBlockEntity<EnergizedPower
             @Override
             protected void onFinalCommit() {
                 setChanged();
-                syncFluidToPlayers(32);
             }
         };
     }
