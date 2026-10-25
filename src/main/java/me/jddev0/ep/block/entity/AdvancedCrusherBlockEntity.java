@@ -105,7 +105,6 @@ public class AdvancedCrusherBlockEntity
             @Override
             protected void onFinalCommit() {
                 setChanged();
-                syncFluidToPlayers(32);
             }
 
             @Override

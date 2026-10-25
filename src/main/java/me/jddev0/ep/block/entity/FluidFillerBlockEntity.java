@@ -105,7 +105,6 @@ public class FluidFillerBlockEntity
             @Override
             protected void onFinalCommit() {
                 setChanged();
-                syncEnergyToPlayers(32);
             }
         };
     }
@@ -162,7 +161,6 @@ public class FluidFillerBlockEntity
             @Override
             protected void onFinalCommit() {
                 setChanged();
-                syncFluidToPlayers(32);
             }
         };
     }

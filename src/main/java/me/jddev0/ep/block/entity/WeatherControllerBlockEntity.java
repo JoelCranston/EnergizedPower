@@ -58,7 +58,6 @@ public class WeatherControllerBlockEntity extends UpgradableEnergyStorageBlockEn
             @Override
             protected void onFinalCommit() {
                 setChanged();
-                syncEnergyToPlayers(32);
             }
         };
     }

@@ -59,7 +59,6 @@ public class SolarPanelBlockEntity extends UpgradableEnergyStorageBlockEntity<En
             @Override
             protected void onFinalCommit() {
                 setChanged();
-                syncEnergyToPlayers(32);
             }
         };
     }

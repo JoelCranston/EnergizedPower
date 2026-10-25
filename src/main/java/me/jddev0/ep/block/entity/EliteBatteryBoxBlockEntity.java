@@ -38,7 +38,6 @@ public class EliteBatteryBoxBlockEntity extends MenuEnergyStorageBlockEntity<Ene
             @Override
             protected void onFinalCommit() {
                 setChanged();
-                syncEnergyToPlayers(32);
             }
         };
     }

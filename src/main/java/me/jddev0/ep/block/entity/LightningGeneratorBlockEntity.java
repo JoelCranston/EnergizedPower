@@ -35,7 +35,6 @@ public class LightningGeneratorBlockEntity extends MenuEnergyStorageBlockEntity<
             @Override
             protected void onFinalCommit() {
                 setChanged();
-                syncEnergyToPlayers(32);
             }
         };
     }

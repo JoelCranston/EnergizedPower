@@ -42,7 +42,6 @@ public class TimeControllerBlockEntity extends MenuEnergyStorageBlockEntity<Ener
             @Override
             protected void onFinalCommit() {
                 setChanged();
-                syncEnergyToPlayers(32);
             }
         };
     }

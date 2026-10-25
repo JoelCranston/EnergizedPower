@@ -99,7 +99,6 @@ public abstract class AbstractUnchargerBlockEntity
             @Override
             protected void onFinalCommit() {
                 setChanged();
-                syncEnergyToPlayers(32);
             }
         };
     }

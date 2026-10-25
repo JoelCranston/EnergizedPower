@@ -64,7 +64,6 @@ public abstract class UpgradableInventoryEnergyStorageBlockEntity
 
     protected void updateUpgradeModules() {
         setChanged();
-        syncEnergyToPlayers(32);
     }
 
     @Override

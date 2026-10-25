@@ -104,7 +104,6 @@ public class FluidDrainerBlockEntity
             @Override
             protected void onFinalCommit() {
                 setChanged();
-                syncEnergyToPlayers(32);
             }
         };
     }
@@ -161,7 +160,6 @@ public class FluidDrainerBlockEntity
             @Override
             protected void onFinalCommit() {
                 setChanged();
-                syncFluidToPlayers(32);
             }
         };
     }

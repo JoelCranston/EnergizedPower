@@ -67,7 +67,6 @@ public class ThermalGeneratorBlockEntity
             @Override
             protected void onFinalCommit() {
                 setChanged();
-                syncEnergyToPlayers(32);
             }
         };
     }
@@ -89,7 +88,6 @@ public class ThermalGeneratorBlockEntity
             @Override
             protected void onFinalCommit() {
                 setChanged();
-                syncFluidToPlayers(32);
             }
 
             @Override

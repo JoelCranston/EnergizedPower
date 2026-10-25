@@ -89,7 +89,6 @@ public class TeleporterBlockEntity
             @Override
             protected void onFinalCommit() {
                 setChangedAndUpdateReadyState();
-                syncEnergyToPlayers(32);
             }
         };
     }

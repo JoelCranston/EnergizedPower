@@ -7,7 +7,6 @@ import me.jddev0.ep.inventory.IEnergizedPowerItemStackHandler;
 import me.jddev0.ep.networking.ModMessages;
 import me.jddev0.ep.networking.packet.FluidSyncS2CPacket;
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -57,13 +56,9 @@ public abstract class InventoryFluidEnergyStorageBlockEntity
                     fluidStorage.getTankCapacity(i), getBlockPos()), (ServerPlayer)player);
     }
 
-    protected final void syncFluidToPlayers(int distance) {
-        if(level != null && !level.isClientSide())
-            for(int i = 0;i < fluidStorage.size();i++)
-                ModMessages.sendToPlayersWithinXBlocks(
-                        new FluidSyncS2CPacket(i, fluidStorage.getFluid(i), fluidStorage.getTankCapacity(i), getBlockPos()),
-                        getBlockPos(), (ServerLevel)level, distance
-                );
+    @Override
+    public int getTankCount() {
+        return fluidStorage.size();
     }
 
     public FluidStack getFluid(int tank) {

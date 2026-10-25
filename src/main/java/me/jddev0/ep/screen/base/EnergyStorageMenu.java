@@ -1,6 +1,7 @@
 package me.jddev0.ep.screen.base;
 
 import me.jddev0.ep.block.entity.base.EnergyStorageBlockEntity;
+import me.jddev0.ep.networking.MenuStorageSyncTracker;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -20,6 +21,9 @@ public abstract class EnergyStorageMenu<T extends EnergyStorageBlockEntity<?>>
     protected final Level level;
     protected final Block blockType;
 
+    @Nullable
+    private final MenuStorageSyncTracker storageSyncTracker;
+
     protected EnergyStorageMenu(@Nullable MenuType<?> menuType, int id, Inventory playerInventory,
                                 BlockEntity blockEntity, Block blockType) {
         this(menuType, id, playerInventory, blockEntity, blockType, 8, 84);
@@ -35,6 +39,8 @@ public abstract class EnergyStorageMenu<T extends EnergyStorageBlockEntity<?>>
         this.level = playerInventory.player.level();
         this.blockType = blockType;
 
+        storageSyncTracker = MenuStorageSyncTracker.create(this.blockEntity, playerInventory.player);
+
         addPlayerInventorySlots(playerInventory, playerInventoryX, playerInventoryY);
     }
 
@@ -46,6 +52,14 @@ public abstract class EnergyStorageMenu<T extends EnergyStorageBlockEntity<?>>
     @Override
     public int getCapacity() {
         return blockEntity.getCapacity();
+    }
+
+    @Override
+    public void broadcastChanges() {
+        super.broadcastChanges();
+
+        if(storageSyncTracker != null)
+            storageSyncTracker.sync();
     }
 
     @Override
